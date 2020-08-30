@@ -26,9 +26,9 @@ public class ConexaoDAO {
         
         Class.forName("com.mysql.jdbc.Driver");
         Properties pro = new Properties();
-        InputStream in = getClass().getClassLoader().getResourceAsStream("propriedades/config.properties");
-        pro.load(in);
-        in.close();
+        try (InputStream in = getClass().getClassLoader().getResourceAsStream("propriedades/config.properties")) {
+            pro.load(in);
+        }
         String URL = pro.getProperty("url");
         String USUARIO = pro.getProperty("usuario");
         String SENHA = pro.getProperty("senha");
@@ -41,7 +41,7 @@ public class ConexaoDAO {
     public ResultSet rs   = null;
     
     String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://192.168.1.100:3306/BancoTeste";
+    String url = "jdbc:mysql://192.168.2.102:3306/BancoTeste";
     String user = "root";
     String pass = "root";
     

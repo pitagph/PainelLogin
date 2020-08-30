@@ -19,11 +19,11 @@ import java.sql.SQLException;
  */
 public class UsuarioDAO {
     
-    private final String LOGIN = "SELECT nome, senha "
-            + "FROM conta WHERE nome = ? "
+    private final String LOGIN = "SELECT login, senha "
+            + "FROM conta WHERE login = ? "
             + "AND senha = ?";
     
-    public Usuario login(String nome, String senha) {
+    public Usuario login(String login, String senha) {
     Usuario u = new Usuario();
     Connection con = null;
     PreparedStatement stmt = null;
@@ -31,11 +31,11 @@ public class UsuarioDAO {
     try {
     con = new ConexaoDAO().getConnection();
     stmt = (PreparedStatement) con.prepareStatement(LOGIN);
-    stmt.setString(1, nome);
+    stmt.setString(1, login);
     stmt.setString(2, senha);
     rs = stmt.executeQuery();
     if(rs.next()) {
-    u.setNome(rs.getString(1));
+    u.setLogin(rs.getString(1));
     u.setSenha(rs.getString(2));
     
     }

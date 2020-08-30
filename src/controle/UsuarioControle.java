@@ -16,8 +16,8 @@ public class UsuarioControle {
     
     UsuarioDAO udao = new UsuarioDAO();
     
-    public Usuario login(String nome, String senha) {
-    return udao.login(nome, senha);
+    public Usuario login(String login, String senha) {
+    return udao.login(login, senha);
     }
     
 }

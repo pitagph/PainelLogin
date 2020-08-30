@@ -8,15 +8,10 @@ package javaapplication1;
 import classe.Usuario;
 import com.mysql.jdbc.PreparedStatement;
 import controle.UsuarioControle;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modelo.md5;
-import modelo.validacao;
 
 /**
  *
@@ -51,7 +46,7 @@ public class Inicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         jLabel2.setText("Pagina Inicial");
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 102));
@@ -65,7 +60,9 @@ public class Inicial extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Senha");
 
+        btn_entrar.setBackground(new java.awt.Color(0, 51, 0));
         btn_entrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_entrar.setForeground(new java.awt.Color(153, 255, 153));
         btn_entrar.setText("Entrar");
         btn_entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,8 +97,8 @@ public class Inicial extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addComponent(btn_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +127,7 @@ public class Inicial extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +136,7 @@ public class Inicial extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,14 +145,8 @@ public class Inicial extends javax.swing.JFrame {
     private void btn_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_entrarActionPerformed
            // TODO add your handling code here:
 //        login(campologin.getText(),camposenha.getText());
-doLogin(campologin.getText(),camposenha.getText());
 
-//
-//try {
-//consultar(campologin.getText(),camposenha.getText());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+doLogin(campologin.getText(),camposenha.getText());
         
 //    if((this.campologin.getText().equals("Admin")) && (this.camposenha.getText().equals("Admin"))) {
 //        JOptionPane.showMessageDialog(rootPane, "Evento CLICADO!");
@@ -181,8 +172,7 @@ doLogin(campologin.getText(),camposenha.getText());
     boolean logado = false;
     String[] usuarios = {"User1","User2"};
     String[] senhas = {"Pass1","Pass2"};
-    
-    public boolean login(String username, String password){
+public boolean login(String username, String password){
 	for(int i = 0; i<usuarios.length; i++){
 		if(username.equals(usuarios[i]) && password.equals(senhas[i])){
 			logado = true;
@@ -226,11 +216,11 @@ public boolean consultar (String login, String senha) throws SQLException{
 private void doLogin (String Login, String Senha) {
 
 Usuario user = new Usuario();
-user.setNome(Login);
+user.setLogin(Login);
 user.setSenha(Senha);
 UsuarioControle uscon = new UsuarioControle();
-user = uscon.login(user.getNome(),user.getSenha());
- if((Login.equals(user.getNome())) && (Senha.equals(user.getSenha()))) {
+user = uscon.login(user.getLogin(),user.getSenha());
+ if((Login.equals(user.getLogin())) && (Senha.equals(user.getSenha()))) {
                 JOptionPane.showMessageDialog(rootPane, "Logado!!!");
      } else {
                 System.out.println("Usuario digitou login ou senha errada");
